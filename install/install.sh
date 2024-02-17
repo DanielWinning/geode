@@ -11,7 +11,7 @@ runScriptFromRepository() {
   "$repositoryUrl/$scriptName"
 }
 
-importScriptFromRepository "/snippets/functions.sh"
+importScriptFromRepository "snippets/functions.sh"
 
 writeInfoText "Hello again, Geode!"
 #errorAndExit() {
