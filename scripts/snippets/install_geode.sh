@@ -1,4 +1,9 @@
-. /usr/local/bin/geode/scripts/snippets/functions.sh
+if [ -e /usr/local/bin/geode/scripts/snippets/functions.sh ]
+then
+  . /usr/local/bin/geode/scripts/snippets/functions.sh
+else
+  runScriptFromRepository "snippets/functions.sh"
+fi
 
 writeText "Cloning server scripts repository to /usr/local/bin"
 git clone https://github.com/DanielWinning/geode.git /usr/local/bin/geode/
