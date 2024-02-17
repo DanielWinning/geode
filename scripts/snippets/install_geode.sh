@@ -6,6 +6,7 @@ sudo cp /usr/local/bin/geode/bin/geode /bin/geode
 
 echo -e "Making geode command executable"
 sudo chmod -R +x /bin/geode
+sudo chmod -R +x /usr/local/bin/geode/scripts/
 
 # Add geode to PATH
 echo -e "Adding geode to PATH"
