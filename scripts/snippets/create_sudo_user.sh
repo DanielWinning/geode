@@ -1,9 +1,4 @@
-if [ -e /usr/local/bin/geode/scripts/snippets/functions.sh ]
-then
-  . /usr/local/bin/geode/scripts/snippets/functions.sh
-else
-  runScriptFromRepository "snippets/functions.sh"
-fi
+. /usr/local/bin/geode/scripts/snippets/functions.sh
 
 writeText "Creating new user with username $1"
 adduser --disabled-password --gecos "" --quiet "$1"
