@@ -29,13 +29,13 @@ writeInfoText "Package list updated"
 "$snippets/install_git.sh"
 writeInfoText "Git installed"
 
-# Create new user
-"$snippets/create_sudo_user.sh" "$username"
-writeInfoText "User created"
-
 # Install Geode
 "$snippets/install_geode.sh"
 writeInfoText "Geode installed"
+
+# Create new user
+"$snippets/create_sudo_user.sh" "$username"
+writeInfoText "User created"
 
 # Enable firewall and allow OpenSSH
 "$snippets/enable_firewall.sh"
