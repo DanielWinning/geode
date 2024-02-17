@@ -18,4 +18,4 @@ runScriptFromRepository "snippets/install_geode.sh"
 
 cleanupInstaller
 
-writeSuccessText "Geode installed and ready to use"
+writeSuccessText "Geode installed and ready to use. Optional: Exit your SSH session and reconnect to apply bash prompt colour changes."
