@@ -32,8 +32,7 @@ sudo bash -c "https://raw.githubusercontent.com/DanielWinning/server-scripts/mai
 command -v certbot &> /dev/null || "$snippets/dependency/install_certbot.sh"
 writeInfoText "Certbot installed"
 
-echo -e "Generating SSL certificate for $domain_name"
-sudo certbot --nginx --non-interactive -m "$email_address" -d "$domain_name" --agree-tos
+"$snippets/ssl/generate_cert.sh" "$domain_name" "$email_address"
 
 writeInfoText "SSL certificate generated for $domain_name"
 writeSuccessText "Website setup complete. Visit https://$domain_name to view your website."
