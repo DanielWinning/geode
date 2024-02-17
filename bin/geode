@@ -7,8 +7,7 @@ snippets="/usr/local/bin/geode/scripts/snippets";
 validateOperatingSystemOrExit
 
 defineCommand help "help.sh" "Displays help information"
-defineCommand server:setup "server/setup.sh" "Creates a new sudo user and runs initial server setup.\r\nRequires: username"
-defineCommand nginx:build "nginx/build.sh"
+defineCommand server:setup "server/setup.sh" "Creates a new sudo user and runs initial server setup.\r\Arguments: username"
 
 isValidCommand "$1" || errorAndExit "Invalid command: $1"
 
