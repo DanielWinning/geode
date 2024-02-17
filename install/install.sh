@@ -18,4 +18,4 @@ runScriptFromRepository "snippets/install_geode.sh"
 
 cleanupInstaller
 
-writeSuccessText "Geode installed"
+writeSuccessText "Geode installed and ready to use"

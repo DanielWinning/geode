@@ -9,9 +9,9 @@ sudo chmod -R +x /bin/geode
 sudo chmod -R +x /usr/local/bin/geode/scripts/
 
 # Add geode to PATH
-echo -e "Adding geode to PATH"
+echo -e "Adding geode to PATH and setting up bash prompt"
 echo "export PATH=\$PATH:/bin/geode" >> ~/.bashrc
-echo "export PS1=\"\[\e[32m\]\[\e[1m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\] \"" >> ~/.bashrc
+echo "export PS1=\"\[\e[32m\]\[\e[1m\]\u\[\e[m\]@\[\e[33m\]\[\e[1m\]\h\[\e[m\] \"" >> ~/.bashrc
 
 # Reload bash
 echo -e "Reloading bash"
