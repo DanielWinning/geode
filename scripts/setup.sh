@@ -1,1 +1,0 @@
-writeInfoText "Running setup.sh"

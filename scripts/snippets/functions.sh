@@ -2,6 +2,8 @@
 ## Global Variables ##
 ######################
 declare -A commands
+declare -A command_help
+script_path='/usr/local/bin/geode/scripts'
 
 ##############
 ## Commands ##
@@ -9,13 +11,15 @@ declare -A commands
 defineCommand() {
   local command_name="$1"
   local script_name="$2"
+  local help_text="$3"
   commands["$command_name"]="$script_name"
+  command_help["$command_name"]="$help_text"
 }
 
 listCommands() {
   for command in "${!commands[@]}"
   do
-    echo "$command - ${commands[$command]}"
+    echo "$command - ${commands[$command]} - ${command_help[$command]}"
   done
 }
 
@@ -29,8 +33,7 @@ runCommandWithArgs() {
   local command_name="$1"
   local script_name="${commands[$command_name]}"
   shift
-  . "/usr/local/bin/geode/scripts/$script_name" "$@"
-  #. "C:/Development/Packages/geode/scripts/$script_name" "$@"
+  . "$script_path/$script_name" "$@"
 }
 
 ################
@@ -48,7 +51,7 @@ validateOS() {
 validateOperatingSystemOrExit() {
   if ! validateOS
   then
-    errorAndExit "This script is only supported on Linux"
+    errorAndExit "Geode is only supported on Linux"
   fi
 }
 
