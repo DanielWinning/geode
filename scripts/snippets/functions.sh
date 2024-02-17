@@ -29,8 +29,8 @@ runCommandWithArgs() {
   local command_name="$1"
   local script_name="${commands[$command_name]}"
   shift
-  #. "/usr/local/bin/geode/scripts/$script_name" "$@"
-  . "C:/Development/Packages/geode/scripts/$script_name" "$@"
+  . "/usr/local/bin/geode/scripts/$script_name" "$@"
+  #. "C:/Development/Packages/geode/scripts/$script_name" "$@"
 }
 
 ################
