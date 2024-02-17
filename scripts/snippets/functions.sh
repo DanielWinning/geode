@@ -51,3 +51,8 @@ writeWarningText() {
 writeInfoText() {
   echo -e "\x1b[34m$1\x1b[0m"
 }
+
+cleanupInstaller() {
+  rm -rf /usr/local/bin/geode/install
+  rm -rf /usr/local/bin/geode/scripts/snippets/install_geode.sh
+}
