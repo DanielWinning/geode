@@ -1,0 +1,12 @@
+[Unit]
+Description=domain.com
+
+[Service]
+ExecStart=/var/www/domain.com
+User=username
+Group=username
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

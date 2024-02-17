@@ -12,7 +12,7 @@ runScriptFromRepository "snippets/functions.sh"
 # Exit if not running on Linux
 validateOperatingSystemOrExit
 
-runScriptFromRepository "snippets/install_git.sh"
+command -v git &> /dev/null || runScriptFromRepository "snippets/dependency/install_git.sh"
 
 runScriptFromRepository "snippets/install_geode.sh"
 

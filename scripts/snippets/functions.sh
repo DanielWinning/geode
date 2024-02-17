@@ -92,8 +92,15 @@ cleanupInstaller() {
   rm -rf /usr/local/bin/geode/scripts/snippets/install_geode.sh
 }
 
+####################
+## Users & Access ##
+####################
 usernameExists() {
   local username="$1"
   id -u "$username" &>/dev/null
   return $?
+}
+
+noRootAccess() {
+  test "$EUID" -eq 0 && errorAndExit "Please run this script as a non-root user"
 }
