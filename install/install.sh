@@ -16,7 +16,6 @@ runScriptFromRepository "snippets/install_git.sh"
 
 runScriptFromRepository "snippets/install_geode.sh"
 
-# Remove install directory and installation script
 cleanupInstaller
 
 writeSuccessText "Geode installed"

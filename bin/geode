@@ -1,42 +1,41 @@
 #!/usr/bin/bash
 snippets="/usr/local/bin/geode/scripts/snippets";
 
-declare -A commands
-declare -A scripts
-declare -A command_flags
-declare -A command_arguments
-
-# Load helper functions
+# Load helper functions and global variables
 . "$snippets/functions.sh"
-
-defineCommand setup "setup.sh"
-
 
 validateOperatingSystemOrExit
 
+defineCommand setup "setup.sh"
+defineCommand nginx:build "nginx/build.sh"
+
+isValidCommand "$1" || errorAndExit "Invalid command: $1"
+
+runCommandWithArgs "$@"
+
 # Initialize variables for arguments and flags
-command_name=""
-declare -a flags
-
-# Parse command-line arguments
-while (( "$#" )); do
-  case "$1" in
-    -*) # flags
-      flags+=("$1")
-      shift
-      ;;
-    *) # command name
-      command_name="$1"
-      shift
-      ;;
-  esac
-done
-
-if ! command -v node &> /dev/null
-then
-  writeErrorText "Node.js is not installed"
-  exit
-fi
-
-echo "Command name: $command_name"
-echo "Flags: " "${flags[@]}"
+#command_name=""
+#declare -a flags
+#
+## Parse command-line arguments
+#while (( "$#" )); do
+#  case "$1" in
+#    -*) # flags
+#      flags+=("$1")
+#      shift
+#      ;;
+#    *) # command name
+#      command_name="$1"
+#      shift
+#      ;;
+#  esac
+#done
+#
+#if ! command -v node &> /dev/null
+#then
+#  writeErrorText "Node.js is not installed"
+#  exit
+#fi
+#
+#echo "Command name: $command_name"
+#echo "Flags: " "${flags[@]}"

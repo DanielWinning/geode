@@ -1,21 +1,41 @@
+######################
+## Global Variables ##
+######################
+declare -A commands
+
+##############
+## Commands ##
+##############
 defineCommand() {
   local command_name="$1"
-  shift
-  local script_name="$1"
-  shift
-  local arguments="$3"
-  shift
-  commands["$command_name"]="$command_name"
-  scripts["$command_name"]="$script_name"
-  command_flags["$command_name"]=$@
-  command_arguments["$command_name"]="$arguments"
+  local script_name="$2"
+  commands["$command_name"]="$script_name"
 }
 
-errorAndExit() {
-  writeErrorText "$1"
-  exit 1
+listCommands() {
+  for command in "${!commands[@]}"
+  do
+    echo "$command - ${commands[$command]}"
+  done
 }
 
+isValidCommand() {
+  local command_name="$1"
+  test -n "${commands[$command_name]}"
+  return $?
+}
+
+runCommandWithArgs() {
+  local command_name="$1"
+  local script_name="${commands[$command_name]}"
+  shift
+  #. "/usr/local/bin/geode/scripts/$script_name" "$@"
+  . "C:/Development/Packages/geode/scripts/$script_name" "$@"
+}
+
+################
+## Validators ##
+################
 validateOS() {
   if [ "$OSTYPE" == "linux-gnu" ]
   then
@@ -30,6 +50,14 @@ validateOperatingSystemOrExit() {
   then
     errorAndExit "This script is only supported on Linux"
   fi
+}
+
+#######################
+## Output Formatters ##
+#######################
+errorAndExit() {
+  writeErrorText "$1"
+  exit 1
 }
 
 writeText() {
@@ -52,6 +80,9 @@ writeInfoText() {
   echo -e "\x1b[34m$1\x1b[0m"
 }
 
+###############
+## Installer ##
+###############
 cleanupInstaller() {
   rm -rf /usr/local/bin/geode/install
   rm -rf /usr/local/bin/geode/scripts/snippets/install_geode.sh
