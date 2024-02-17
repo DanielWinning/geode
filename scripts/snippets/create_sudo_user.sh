@@ -1,5 +1,10 @@
 . /usr/local/bin/geode/scripts/snippets/functions.sh
 
+if usernameExists "$1"
+then
+  errorAndExit "User $1 already exists. Please provide a different username."
+fi
+
 writeText "Creating new user with username $1"
 adduser --disabled-password --gecos "" --quiet "$1"
 

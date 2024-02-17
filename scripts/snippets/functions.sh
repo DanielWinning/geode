@@ -91,3 +91,9 @@ cleanupInstaller() {
   rm -rf /usr/local/bin/geode/install
   rm -rf /usr/local/bin/geode/scripts/snippets/install_geode.sh
 }
+
+usernameExists() {
+  local username="$1"
+  id -u "$username" &>/dev/null
+  return $?
+}
