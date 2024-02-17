@@ -3,9 +3,12 @@ defineCommand() {
   shift
   local script_name="$1"
   shift
+  local arguments="$3"
+  shift
   commands["$command_name"]="$command_name"
   scripts["$command_name"]="$script_name"
   command_flags["$command_name"]=$@
+  command_arguments["$command_name"]="$arguments"
 }
 
 errorAndExit() {

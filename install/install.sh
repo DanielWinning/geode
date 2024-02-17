@@ -40,6 +40,7 @@ validateOperatingSystemOrExit
 # Install Git
 echo -e "Installing Git"
 sudo apt install git -y
+writeInfoText "Git installed"
 
 # Install Geode
 echo -e "Cloning server scripts repository to /usr/local/bin"
@@ -54,6 +55,7 @@ sudo chmod -R +x /bin/geode
 # Add geode to PATH
 echo -e "Adding geode to PATH"
 echo "export PATH=\$PATH:/bin/geode" >> ~/.bashrc
+writeInfoText "Geode downloaded and added to PATH"
 
 # Reload bash
 echo -e "Reloading bash"

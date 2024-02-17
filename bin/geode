@@ -1,52 +1,42 @@
 #!/usr/bin/bash
-# Set the current directory to the directory of the script
-directory=$(dirname "$0")
-parent_directory="$(dirname "$directory")"
+snippets="/usr/local/bin/geode/scripts/snippets";
+
 declare -A commands
 declare -A scripts
 declare -A command_flags
+declare -A command_arguments
 
 # Load helper functions
-. "$parent_directory/scripts/snippets/functions.sh"
+. "$snippets/functions.sh"
 
-# - Command Definitions -
-# Define the command name and allowed flags
-defineCommand webserver webserver.sh
+defineCommand setup "setup.sh"
 
-for key in "${!commands[@]}";
-do
-  echo "Command: $key, Script: ${scripts[$key]}, Flags: ${command_flags[$key]}"
+
+validateOperatingSystemOrExit
+
+# Initialize variables for arguments and flags
+command_name=""
+declare -a flags
+
+# Parse command-line arguments
+while (( "$#" )); do
+  case "$1" in
+    -*) # flags
+      flags+=("$1")
+      shift
+      ;;
+    *) # command name
+      command_name="$1"
+      shift
+      ;;
+  esac
 done
 
-#if ! validateOS
-#then
-#  writeErrorText "GEODE is only supported on Linux"
-#  exit
-#fi
-#
-## Initialize variables for arguments and flags
-#command_name=""
-#declare -a flags
-#
-## Parse command-line arguments
-#while (( "$#" )); do
-#  case "$1" in
-#    -*) # flags
-#      flags+=("$1")
-#      shift
-#      ;;
-#    *) # command name
-#      command_name="$1"
-#      shift
-#      ;;
-#  esac
-#done
-#
-#if ! command -v node &> /dev/null
-#then
-#  writeErrorText "Node.js is not installed"
-#  exit
-#fi
-#
-#echo "Command name: $command_name"
-#echo "Flags: " "${flags[@]}"
+if ! command -v node &> /dev/null
+then
+  writeErrorText "Node.js is not installed"
+  exit
+fi
+
+echo "Command name: $command_name"
+echo "Flags: " "${flags[@]}"
