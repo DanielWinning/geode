@@ -20,7 +20,7 @@ listCommands() {
   for command in "${!commands[@]}"
   do
     writeInfoText "$command"
-    writeText "${command_help[$command]}"
+    writeText "${command_help[$command]}\r\n"
   done
 }
 
