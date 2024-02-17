@@ -19,7 +19,8 @@ defineCommand() {
 listCommands() {
   for command in "${!commands[@]}"
   do
-    echo "$command - ${commands[$command]} - ${command_help[$command]}"
+    writeInfoText "$command"
+    writeText "${command_help[$command]}"
   done
 }
 
