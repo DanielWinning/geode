@@ -13,7 +13,7 @@ sudo sed -i "s/www.domain.com/$domain_name/" /etc/nginx/sites-available/"$domain
 sudo ln -s /etc/nginx/sites-available/"$domain_name" /etc/nginx/sites-enabled/
 
 echo -e "Creating website directories"
-sudo chown -R "$USER":"$USER" /var/www/
+sudo chown -R www-data:www-data /var/www/
 sudo mkdir -p /var/www/"$domain_name"/public
 
-sudo bash -c "/usr/local/bin/geode/templates/nginx/index.html > /var/www/$domain_name/public/index.html"
+sudo cp "/usr/local/bin/geode/templates/nginx/index.html" "/var/www/$domain_name/public/index.html"

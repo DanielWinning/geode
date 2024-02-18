@@ -14,4 +14,9 @@ fi
 
 "$snippets/nginx/create_config.sh" "$domain_name"
 
+writeInfoText "Nginx config created"
+
 "$snippets/ssl/generate_cert.sh" "$domain_name" "$email_address"
+
+writeInfoText "SSL certificate generated for $domain_name"
+writeSuccessText "Website setup complete. Visit https://$domain_name to view your website."
