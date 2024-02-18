@@ -14,6 +14,8 @@ then
   exit
 fi
 
+"$snippets/apt_update.sh"
+
 echo -e "Installing Java Runtime Environment and Java Dev Kit\n"
 sudo apt install default-jre default-jdk -y
 
@@ -21,18 +23,13 @@ echo -e "Downloading Jenkins and saving keys\n"
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
 
-"$snippets/apt_update.sh"
-
 echo -e "Installing Jenkins\n"
 sudo apt-get install jenkins -y
 sudo ufw allow 8080
 
-if [ ! command -v nginx &> /dev/null ]
-then
-  echo -e "Nginx is not installed. Installing Nginx\n"
-  sudo apt install nginx -y
-  sudo ufw allow 'Nginx Full'
-fi
+echo -e "Nginx is not installed. Installing Nginx\n"
+sudo apt install nginx -y
+sudo ufw allow 'Nginx Full'
 
 echo -e "Copying server config file\n"
 sudo cp "$templates/jenkins/nginx.conf" "/etc/nginx/sites-available/$domain_name"
