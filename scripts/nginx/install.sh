@@ -1,4 +1,5 @@
 snippets="/usr/local/bin/geode/scripts/snippets";
+templates="/usr/local/bin/geode/templates";
 
 . "$snippets/functions.sh"
 
@@ -26,7 +27,7 @@ echo -e "Creating website directories"
 sudo chown -R "$USER":"$USER" /var/www/
 sudo mkdir -p /var/www/"$domain_name"/public
 
-sudo bash -c "https://raw.githubusercontent.com/DanielWinning/server-scripts/main/nginx.html > /var/www/$domain_name/public/index.html"
+sudo cp "$templates/nginx/index.html" "/var/www/$domain_name/public/index.html"
 
 # Install certbot if it isn't already installed
 command -v certbot &> /dev/null || "$snippets/dependency/install_certbot.sh"
