@@ -104,3 +104,7 @@ usernameExists() {
 noRootAccess() {
   test "$EUID" -eq 0 && errorAndExit "Please run this script as a non-root user"
 }
+
+runServerSetupFirst() {
+  command -v git &>/dev/null || errorAndExit "Please run server:setup first"
+}
