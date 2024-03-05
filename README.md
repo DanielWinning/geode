@@ -20,8 +20,7 @@ and run the installer to get started.
 - Run the following command:
 
 ```shell
-curl https://raw.githubusercontent.com/DanielWinning/geode/main/install/install.sh | bash
-# curl https://pkg.dannyxcii.co.uk/get/geode | bash
+curl -s https://pkg.dannyxcii.co.uk/get/geode | bash
 ```
 
 This installs the `geode` command to your system.
